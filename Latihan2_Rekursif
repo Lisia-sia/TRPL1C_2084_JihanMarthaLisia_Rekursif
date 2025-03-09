@@ -1,30 +1,39 @@
 import 'dart:io';
 
 void main() {
+  // Daftar karakter yang akan digunakan untuk kombinasi
   List<String> karakter = ['a', 'b', 'c'];
   int jumlahKarakter = 3;
   
+  // Menampilkan jumlah karakter yang akan digunakan
   print('Jumlah karakter = $jumlahKarakter');
   
+  // Mencatat waktu mulai untuk menghitung durasi proses
   DateTime startTime = DateTime.now();
   
+  // Menyiapkan list untuk menyimpan kombinasi
   List<String> kombinasi = List.filled(jumlahKarakter, '');
+  
+  // Memulai proses pembuatan kombinasi
   generateKombinasi(karakter, jumlahKarakter, kombinasi, 0);
   
+  // Mencatat waktu selesai dan menghitung waktu total yang dibutuhkan
   DateTime endTime = DateTime.now();
   print('\nBUILD SUCCESSFUL');
   print('(total time: ${endTime.difference(startTime).inMilliseconds / 1000.0} second)');
 }
 
-
+// Fungsi untuk menghasilkan kombinasi karakter
 void generateKombinasi(List<String> karakter, int n, List<String> kombinasi, int index) {
+  // Jika sudah mencapai panjang kombinasi, tampilkan kombinasi saat ini
   if (index == n) {
-    stdout.write('${kombinasi.join('')} ');
+    stdout.write('${kombinasi.join('')} '); // Gabungkan dan tampilkan kombinasi
     return;
   }
   
+  // Loop untuk mencoba setiap karakter di posisi yang ada
   for (int i = 0; i < karakter.length; i++) {
-    kombinasi[index] = karakter[i];
-    generateKombinasi(karakter, n, kombinasi, index + 1);
+    kombinasi[index] = karakter[i]; // Tentukan karakter di posisi tertentu
+    generateKombinasi(karakter, n, kombinasi, index + 1); // Rekursif untuk posisi berikutnya
   }
 }
