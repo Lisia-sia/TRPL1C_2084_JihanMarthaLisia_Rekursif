@@ -12,14 +12,21 @@ int hitungPascal(int baris, int kolom) {
   if (kolom == 0 || kolom == baris) {
     return 1;
   } else {
-      return hitungPascal(baris - 1, kolom -1) + hitungPascal(baris - 1, kolom);
+    return hitungPascal(baris - 1, kolom - 1) + hitungPascal(baris - 1, kolom);
   }
 }
 
 void tampilkanPascal(int n) {
-  for (int i = 0; i < n; i++) { //mengatur jumlah baris pada segitiga pascal
-  for (int j = 0; j < n - i - 1; j++) { //mencetak spasi pada segitiga pascal
-    stdout.write("${hitungPascal(i,j).toString().padLeft(4)}"); //mengambil nilai dan mengubah angka menjadi teks
+  //mengatur jumlah baris pada segitiga pascal 
+  for (int i = 0; i < n; i++) { 
+    //mencetak spasi pada segitiga pascal
+    for (int j = 0; j < n - i - 1; j++) { 
+      stdout.write("  ");
+    }
+    
+  for (int j = 0; j <= i; j++) {
+    //mengambil nilai dan mengubah angka menjadi teks
+    stdout.write("${hitungPascal(i,j).toString().padLeft(4)}"); 
   }
   print(""); //untuk mengganti baris ke baris baru
   }
