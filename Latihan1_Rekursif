@@ -1,0 +1,26 @@
+import 'dart:io';
+
+void main() {
+  int n = 6; //jumlah baris yang diminta pada segitiga pascal
+  print("Segitiga Pascal dengan $n baris:");
+  tampilkanPascal(n);
+}
+
+//fungsi untuk menghitung nilai pada segitiga pascal menggunakan rekursif
+int hitungPascal(int baris, int kolom) {
+  //ini digunakan agar segitiga pascal sisi paling kiri dan kanan selalu 1
+  if (kolom == 0 || kolom == baris) {
+    return 1;
+  } else {
+      return hitungPascal(baris - 1, kolom -1) + hitungPascal(baris - 1, kolom);
+  }
+}
+
+void tampilkanPascal(int n) {
+  for (int i = 0; i < n; i++) { //mengatur jumlah baris pada segitiga pascal
+  for (int j = 0; j < n - i - 1; j++) { //mencetak spasi pada segitiga pascal
+    stdout.write("${hitungPascal(i,j).toString().padLeft(4)}"); //mengambil nilai dan mengubah angka menjadi teks
+  }
+  print(""); //untuk mengganti baris ke baris baru
+  }
+}
