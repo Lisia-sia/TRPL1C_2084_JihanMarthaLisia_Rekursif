@@ -1,0 +1,19 @@
+void main() {
+  String biner = "01101"; //angka binner yang akan di konversi
+  int hasil = test(biner, biner.length - 1); //mengoversi ke desimal
+  print('Biner "$biner" dalam desimal adalah: $hasil');
+}
+
+int test(String s, int last) {
+  if (last < 0) {  
+    return 0;
+  }
+  
+  if (s[last] == '0') {
+    // Kalikan dengan 2 (untuk menggeser angka biner ke sebalah kiri)
+    return 2 * test(s, last - 1);
+  }
+
+  //angka biner pada posisi terakhir adalah '1', tambahkan 1 dan kalikan dengan 2
+  return 1 + 2 * test(s, last - 1);
+}
