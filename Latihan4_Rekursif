@@ -1,0 +1,23 @@
+void main() {
+  int jumlahDisc = 3;
+  print('Jumlah disc : $jumlahDisc');
+  print('Langkah-langkah nya adalah dengan :');
+  
+  solveHanoi(jumlahDisc, 'A', 'C', 'B');
+}
+
+void solveHanoi(int n, String asal, String tujuan, String perantara) {
+  if (n == 1) {
+    print('Pindahkan disc 1 dari pasak $asal ke pasak $tujuan');
+    return;
+  }
+  
+  // Pindahkan n-1 disc dari asal ke perantara menggunakan tujuan sebagai perantara
+  solveHanoi(n - 1, asal, perantara, tujuan);
+  
+  // Pindahkan disc terbesar dari asal ke tujuan
+  print('Pindahkan disc $n dari pasak $asal ke pasak $tujuan');
+  
+  // Pindahkan n-1 disc dari perantara ke tujuan menggunakan asal sebagai perantara
+  solveHanoi(n - 1, perantara, tujuan, asal);
+}
