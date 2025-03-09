@@ -1,0 +1,54 @@
+void main() {
+  // Ini adalah data yang sudah diurutkan
+  List<int> data = [2, 5, 8, 10, 14, 32, 35, 41, 67, 88, 90, 101, 109];
+  
+  // Ini adalah angka yang kita cari di dalam data
+  int target = 10;
+  
+  // Menampilkan data yang ada
+  print('Data : ${arrayToString(data)}');
+  
+  // Menampilkan angka yang ingin dicari
+  print('Data yang dicari : $target');
+  
+  // Melakukan pencarian dengan binary search (pencarian biner)
+  int result = binarySearch(data, target, 0, data.length - 1);
+  
+  // Jika angka ditemukan, tampilkan posisi index-nya
+  if (result != -1) {
+    print('Data $target berada pada index ke - $result');
+  } else {
+    // Jika angka tidak ditemukan, tampilkan pesan tidak ditemukan
+    print('Data $target tidak ditemukan');
+  }
+}
+
+// Fungsi binary search (pencarian biner) untuk mencari angka di dalam data
+int binarySearch(List<int> arr, int target, int left, int right) {
+  // Jika left (batas kiri) lebih besar dari right (batas kanan), berarti data sudah tidak ditemukan
+  if (left > right) {
+    return -1; // Jika data tidak ditemukan, return -1
+  }
+  
+  // Menentukan posisi tengah dari data yang akan dicari
+  int mid = left + (right - left) ~/ 2;
+  
+  // Jika angka di tengah data sama dengan target, berarti kita sudah menemukannya
+  if (arr[mid] == target) {
+    return mid; // Return index dimana target ditemukan
+  } 
+  // Jika angka di tengah lebih besar dari target, kita cari di bagian kiri
+  else if (arr[mid] > target) {
+    return binarySearch(arr, target, left, mid - 1); // Cari di kiri
+  } 
+  // Jika angka di tengah lebih kecil dari target, kita cari di bagian kanan
+  else {
+    return binarySearch(arr, target, mid + 1, right); // Cari di kanan
+  }
+}
+
+// Fungsi tambahan untuk menampilkan data dalam format string
+String arrayToString(List<int> arr) {
+  // Mengubah list menjadi string, elemen dipisah dengan koma
+  return arr.join(', ');
+}
