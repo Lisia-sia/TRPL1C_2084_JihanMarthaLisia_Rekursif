@@ -1,0 +1,30 @@
+import 'dart:io';
+
+void main() {
+  List<String> karakter = ['a', 'b', 'c'];
+  int jumlahKarakter = 3;
+  
+  print('Jumlah karakter = $jumlahKarakter');
+  
+  DateTime startTime = DateTime.now();
+  
+  List<String> kombinasi = List.filled(jumlahKarakter, '');
+  generateKombinasi(karakter, jumlahKarakter, kombinasi, 0);
+  
+  DateTime endTime = DateTime.now();
+  print('\nBUILD SUCCESSFUL');
+  print('(total time: ${endTime.difference(startTime).inMilliseconds / 1000.0} second)');
+}
+
+
+void generateKombinasi(List<String> karakter, int n, List<String> kombinasi, int index) {
+  if (index == n) {
+    stdout.write('${kombinasi.join('')} ');
+    return;
+  }
+  
+  for (int i = 0; i < karakter.length; i++) {
+    kombinasi[index] = karakter[i];
+    generateKombinasi(karakter, n, kombinasi, index + 1);
+  }
+}
