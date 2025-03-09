@@ -1,0 +1,17 @@
+import 'dart:io';
+
+void main() {
+  int num = 13; //menentukan angka yang akan di konversi kebiner
+  print('Konversi $num ke biner:');
+  decToBin(num); //untuk mengoversi angka
+  print(''); // Baris baru setelah hasil
+}
+
+void decToBin(int num) {
+  if (num > 0) {
+    //rekursif akan membagi angka dan mengoversi sisanya
+    decToBin(num ~/ 2);
+    //menampilkan sisa pembagian dari angka biner secara terbalik
+    stdout.write('${num % 2}');
+  }
+}
